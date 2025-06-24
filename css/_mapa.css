@@ -1,0 +1,268 @@
+/* src/css/_mapa.css */
+
+#mapa-interactivo {
+    background-color: white;
+}
+
+#mapa-interactivo h2 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.mapa-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 550px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Asegura que los marcadores no se salgan del mapa */
+    margin-bottom: 2rem;
+}
+
+.mapa-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Tooltip para el mapa */
+.mapa-tooltip {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+    white-space: normal;
+    width: 280px;
+    pointer-events: none; /* No bloquea clics en el marcador */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mapa-tooltip.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.mapa-tooltip h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+.mapa-tooltip p {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.mapa-tooltip a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.mapa-tooltip a:hover {
+    text-decoration: underline;
+}
+
+/* Marcador del mapa */
+.mapa-marker {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50% 50% 50% 0;
+    background-color: currentColor;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 4; /* Para estar encima del mapa pero debajo del tooltip */
+}
+
+.mapa-marker::after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: white;
+    transform: rotate(45deg); /* Desrota el círculo interno */
+}
+
+.mapa-marker:hover {
+    transform: rotate(-45deg) scale(1.1);
+}
+
+/* Rutas y botones de zoom (si es aplicable, se definen en _animations.css) */
+.mapa-rutas-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    width: 100%;
+}
+
+.mapa-rutas-inner button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+/* Estilos para los carteles de colectivo */
+.bondi-sign {
+  width: 70px;
+  height: 35px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+}
+
+.bondi-sign:hover {
+  transform: scale(1.05);
+}
+
+.bondi-blue {
+  background-color: #003366;
+  color: white;
+}
+
+.bondi-number {
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* Nueva sección para el diseño con tabs */
+.mapa {
+  padding: 5rem 2rem;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.mapa h2 {
+  font-size: 2.2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.mapa p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.mapa-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.mapa-tabs button {
+  background: white;
+  border: 2px solid #99cc00;
+  color: #333;
+  padding: 0.6rem 1.5rem;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mapa-tabs button:hover,
+.mapa-tabs button.active {
+  background: #99cc00;
+  color: white;
+}
+
+/* Agregar funcionalidad para cambiar el iframe al presionar el tab de Santos Lugares */
+.mapa-tabs button[data-location="santos-lugares"] {
+  /* Estilo específico para el botón de Santos Lugares */
+}
+
+.mapa iframe {
+  width: 90%;
+  max-width: 800px;
+  height: 450px;
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive para el mapa interactivo */
+@media (max-width: 992px) {
+    .mapa-wrapper {
+        height: 450px;
+    }
+
+    .mapa-tooltip {
+        width: 260px;
+    }
+}
+
+@media (max-width: 768px) {
+    #mapa-interactivo h2 {
+        font-size: 2rem;
+    }
+    .mapa-wrapper {
+        height: 350px;
+        max-width: 100%;
+    }
+    .mapa-tooltip {
+        width: 200px;
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+    .mapa-marker {
+        width: 35px;
+        height: 35px;
+    }
+    .mapa-marker::after {
+        width: 20px;
+        height: 20px;
+    }
+    .mapa-rutas-inner {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem;
+    }
+    .mapa-rutas-inner button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .mapa-wrapper {
+        height: 300px;
+    }
+    .mapa-tooltip {
+        width: 180px;
+        font-size: 0.8rem;
+    }
+}

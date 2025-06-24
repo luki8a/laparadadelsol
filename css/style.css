@@ -1,0 +1,46 @@
+/* style.css - Archivo principal de estilos */
+
+/* Importar estilos base y variables */
+@import url('./_base.css');
+
+/* Importar estilos de layout general */
+@import url('./_layout.css');
+
+/* Importar la barra de navegación */
+@import url('./_navbar.css');
+
+/* Importar estilos de secciones específicas */
+@import url('./_header.css');
+@import url('./_hero.css');
+@import url('./_servicios.css');
+@import url('./_kioscos.css');
+@import url('./_mapa.css');
+@import url('./_metodos-pago.css');
+@import url('./_footer.css');
+
+/* Importar animaciones globales */
+@import url('./animations.css');
+
+/* No deberían necesitarse estilos adicionales aquí, a menos que sean globales y no encajen en ninguna otra categoría. */
+
+.servicio img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 1.2rem;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.08));
+}
+@media (max-width: 900px) {
+  .servicio img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 0.9rem;
+  }
+}
+@media (max-width: 600px) {
+  .servicio img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.7rem;
+  }
+}

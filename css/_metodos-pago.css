@@ -1,0 +1,84 @@
+/* src/css/_metodos-pago.css */
+
+#metodos-pago {
+    background-color: var(--background-color);
+}
+
+#metodos-pago h2 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.pago-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.pago-item {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 180px; /* Ancho fijo para las tarjetas de pago */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pago-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.pago-item i {
+    font-size: 3.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.pago-item h3 {
+    font-size: 1.3rem;
+    color: var(--text-color);
+    margin-bottom: 0;
+}
+
+/* Animaciones de entrada para los métodos de pago (la clase animated se define en _animations.css) */
+.pago-item.animated {
+    animation: fadeInRise 0.8s forwards ease-out; /* Solo la referencia al keyframe */
+}
+
+/* Responsive para métodos de pago */
+@media (max-width: 768px) {
+    #metodos-pago h2 {
+        font-size: 2rem;
+    }
+    .pago-grid {
+        gap: 1.5rem;
+    }
+    .pago-item {
+        width: 150px;
+        padding: 1.2rem;
+    }
+    .pago-item i {
+        font-size: 3rem;
+    }
+    .pago-item h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pago-item {
+        width: 130px;
+        padding: 1rem;
+    }
+    .pago-item i {
+        font-size: 2.5rem;
+    }
+    .pago-item h3 {
+        font-size: 1rem;
+    }
+}

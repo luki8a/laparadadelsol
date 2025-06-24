@@ -1,0 +1,90 @@
+.servicios {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #f9fff4;
+}
+
+.servicios h2 {
+  font-size: 2.1rem;
+  margin-bottom: 2.5rem;
+  color: #222;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.servicio {
+  background: #fafafa;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  padding: 2.2rem 1.2rem 1.7rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.servicio:hover {
+  box-shadow: 0 6px 32px rgba(255,214,0,0.13), 0 2px 16px rgba(0,0,0,0.10);
+  transform: translateY(-4px) scale(1.03);
+}
+
+.servicio img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 1.2rem;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.08));
+}
+
+@media (max-width: 900px) {
+  .servicios {
+    padding: 2.5rem 0.7rem;
+  }
+  .servicios-grid {
+    gap: 1.2rem;
+  }
+  .servicio {
+    padding: 1.5rem 0.7rem 1.2rem 0.7rem;
+  }
+  .servicio img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .servicios {
+    padding: 1.5rem 0.2rem;
+  }
+  .servicios h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+  .servicios-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  .servicio {
+    padding: 1.1rem 0.3rem 0.8rem 0.3rem;
+    border-radius: 0.7rem;
+  }
+  .servicio img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.7rem;
+  }
+  .servicio h3 {
+    font-size: 1rem;
+  }
+  .servicio p {
+    font-size: 0.93rem;
+  }
+}

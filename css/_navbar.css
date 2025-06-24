@@ -1,0 +1,452 @@
+/* _navbar.css - Estilos modernizados para la barra de navegación */
+
+:root {
+    --navbar-primary: #FFD600; /* Amarillo principal */
+    --navbar-text: #333333;
+    --navbar-text-hover: #000000;
+    --navbar-highlight: #FF9500; /* Naranja para acentos/hover */
+    --navbar-shadow: rgba(0, 0, 0, 0.1);
+    --navbar-transition: all 0.3s ease;
+    --toldo-stripe-1: #FF0000; /* Rojo para rayas del toldo */
+    --toldo-stripe-2: #FFFFFF; /* Blanco para rayas del toldo */
+}
+
+/* Estilos para el toldo */
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: repeating-linear-gradient(
+        45deg,
+        var(--toldo-stripe-1),
+        var(--toldo-stripe-1) 10px,
+        var(--toldo-stripe-2) 10px,
+        var(--toldo-stripe-2) 20px
+    );
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: -1;
+}
+
+/* Añadimos pequeños efectos visuales para el toldo */
+.navbar::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--navbar-primary);
+    z-index: -1;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto de sombra decorativa que sugiere que el toldo continúa */
+.navbar .container::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 1160px;
+    height: 18px;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 70%);
+    border-radius: 50%;
+    opacity: 0.5;
+    z-index: -2;
+}
+
+/* Estructura principal del navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: var(--navbar-primary);
+    box-shadow: 0 4px 8px var(--navbar-shadow);
+    padding: 1.2rem 0; /* Aumentado el padding vertical */
+    transition: transform 0.4s ease, background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+    transform: translateY(0); /* Posición inicial */
+    width: 100vw; /* Asegura que cubra todo el ancho de la ventana */
+}
+
+.navbar.scrolled {
+    padding: 0.6rem 0;
+    background-color: rgba(255, 214, 0, 0.98); /* Amarillo casi opaco */
+    backdrop-filter: blur(10px); /* Efecto de vidrio esmerilado moderno */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+    width: 100%;
+}
+
+/* Ajustes al logo cuando el navbar está en modo scrolled */
+.navbar.scrolled .logo img {
+    height: 45px; /* Ligeramente más pequeño que el original pero aún grande */
+    transition: height 0.3s ease;
+}
+
+.navbar.scrolled .logo {
+    font-size: 1.6rem; /* Ligeramente más pequeño en modo scrolled */
+    transition: font-size 0.3s ease;
+}
+
+.navbar.hidden {
+    transform: translateY(-100%); /* Se oculta hacia arriba */
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Estilos del logo */
+.logo {
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.8rem; /* Tamaño del texto aumentado */
+    font-weight: 700;
+    color: var(--navbar-text);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: var(--navbar-transition);
+}
+
+.logo:hover {
+    transform: scale(1.02);
+}
+
+.logo img {
+    height: 100px; /* Altura de la imagen aumentada */
+    margin-right: 15px; /* Más espacio entre la imagen y el texto */
+    transition: var(--navbar-transition);
+    vertical-align: middle; /* Mejor alineación vertical */
+}
+
+/* Estilos del menú de navegación */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.8rem;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--navbar-text);
+    font-weight: 500;
+    font-size: 1.05rem;
+    padding: 0.5rem 0.2rem;
+    transition: var(--navbar-transition);
+    position: relative;
+}
+
+/* Efecto de subrayado al hover y activo */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--navbar-highlight);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--navbar-text-hover);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    font-weight: 600;
+    color: var(--navbar-text-hover);
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Botón de contacto destacado */
+.nav-contact {
+    background-color: var(--navbar-highlight);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: var(--navbar-transition);
+}
+
+.nav-contact::after {
+    display: none;
+}
+
+.nav-contact:hover {
+    background-color: #e68a00;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Toggle para menú móvil - Diseño mejorado */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    padding: 0;
+    z-index: 10;
+    transition: transform 0.25s ease;
+    outline: none;
+}
+
+.nav-toggle:hover {
+    transform: scale(1.05);
+}
+
+/* Nuevo diseño del botón hamburguesa */
+.nav-icon {
+    position: relative;
+    width: 24px;
+    height: 2px;
+    background-color: var(--navbar-text);
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+    transition: background-color 0.2s ease 0.2s;
+}
+
+.nav-icon::before,
+.nav-icon::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: var(--navbar-text);
+    border-radius: 4px;
+    left: 0;
+    transition: transform 0.3s ease, top 0.3s ease 0.2s, bottom 0.3s ease 0.2s;
+}
+
+.nav-icon::before {
+    top: -8px;
+}
+
+.nav-icon::after {
+    bottom: -8px;
+}
+
+/* Animación suave para el toggle al activarse */
+.nav-toggle.active .nav-icon {
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+}
+
+.nav-toggle.active .nav-icon::before {
+    top: 0;
+    transform: rotate(45deg);
+    transition: top 0.3s ease, transform 0.3s ease 0.2s;
+}
+
+.nav-toggle.active .nav-icon::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+    transition: bottom 0.3s ease, transform 0.3s ease 0.2s;
+}
+
+/* Efecto de presión al hacer clic */
+.nav-toggle:active {
+    transform: scale(0.92);
+}
+
+/* Estilos responsive para dispositivos móviles */
+@media (max-width: 992px) {    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        max-width: 320px;
+        height: 100vh;
+        background-color: var(--navbar-primary);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        transform: translateX(100%);
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.2);
+        padding: 4rem 2rem;
+        overflow-y: auto;
+        border-radius: 0 0 0 8px; /* Borde redondeado en esquina inferior izquierda */
+    }
+    
+    .nav-menu.active {
+        right: 0;
+        transform: translateX(0);
+    }
+      /* Añadir overlay oscuro cuando el menú está abierto - transición mejorada */
+    .navbar::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.6); /* Oscuridad aumentada para mejor contraste */
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.35s cubic-bezier(0.21, 1, 0.36, 1), visibility 0.35s cubic-bezier(0.21, 1, 0.36, 1);
+        pointer-events: none;
+        backdrop-filter: blur(2px); /* Efecto de desenfoque sutil */
+    }
+    
+    .navbar.menu-active::after {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+    
+    .nav-toggle {
+        display: block;
+    }
+      .nav-item {
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    .nav-menu.active .nav-item {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: calc(0.05s * var(--item-index, 0));
+    }
+    
+    .nav-item:nth-child(1) { --item-index: 1; }
+    .nav-item:nth-child(2) { --item-index: 2; }
+    .nav-item:nth-child(3) { --item-index: 3; }
+    .nav-item:nth-child(4) { --item-index: 4; }
+    .nav-item:nth-child(5) { --item-index: 5; }
+    
+    .nav-link {
+        display: block;
+        width: 100%;
+        padding: 1rem 0;
+        font-size: 1.2rem;
+        transition: color 0.2s ease, transform 0.2s ease;
+    }
+    
+    .nav-link:active {
+        transform: scale(0.96);
+    }
+    
+    .nav-link::after {
+        height: 2px;
+        bottom: 0;
+    }
+    
+    .nav-contact {
+        margin-top: 1rem;
+        box-shadow: 0 2px 10px rgba(230, 138, 0, 0.3);
+    }
+}
+
+/* Ajustes para tablets */
+@media (max-width: 768px) {
+    .logo {
+        font-size: 1.5rem; /* Ajustado para el nuevo tamaño */
+    }
+    
+    .logo img {
+        height: 42px; /* Aumentado proporcionalmente */
+    }
+    
+    /* Ajuste para el modo scrolled en tablets */
+    .navbar.scrolled .logo {
+        font-size: 1.4rem;
+    }
+    
+    .navbar.scrolled .logo img {
+        height: 38px;
+    }
+    
+    /* Ajustar toldo para tablets */
+    .navbar::before {
+        height: 10px;
+        top: -10px;
+        background: repeating-linear-gradient(
+            45deg,
+            var(--toldo-stripe-1),
+            var(--toldo-stripe-1) 8px,
+            var(--toldo-stripe-2) 8px,
+            var(--toldo-stripe-2) 16px
+        );
+    }
+}
+
+/* Ajustes para móviles pequeños */
+@media (max-width: 480px) {
+    .navbar .container {
+        width: 95%;
+    }
+    
+    .logo {
+        font-size: 1.3rem; /* Aumentado pero aún adaptado a móviles */
+    }
+    
+    .logo img {
+        height: 60px; /* Aumentado proporcionalmente */
+        margin-right: 10px;
+    }
+    
+    /* Ajuste para el modo scrolled en móviles */
+    .navbar.scrolled .logo {
+        font-size: 1.2rem;
+    }
+    
+    .navbar.scrolled .logo img {
+        height: 34px;
+    }
+    
+    .nav-menu {
+        width: 80%;
+    }
+    
+    /* Ajustar toldo para móviles pequeños */
+    .navbar::before {
+        height: 8px;
+        top: -8px;
+        background: repeating-linear-gradient(
+            45deg,
+            var(--toldo-stripe-1),
+            var(--toldo-stripe-1) 6px,
+            var(--toldo-stripe-2) 6px,
+            var(--toldo-stripe-2) 12px
+        );
+    }
+    
+    .navbar .container::before {
+        top: -20px;
+        height: 10px;
+    }
+}

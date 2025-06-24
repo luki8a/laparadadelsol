@@ -1,0 +1,23 @@
+/* src/css/_layout.css */
+
+/* Estilos para las secciones generales */
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%; /* Asegurar que la sección ocupa todo el ancho disponible */
+}
+
+/* Responsive general para secciones */
+@media (max-width: 768px) {
+    section {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 1rem;
+    }
+}
